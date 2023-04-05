@@ -20,6 +20,12 @@ class Popup {
         this.popup.classList.remove('popup_active')
         document.removeEventListener('keyup', this._handleEscUp)
     }
+    
+    setContent(contentNode) {
+        const containerContent = this.popup.querySelector('.popup__content');
+        containerContent.innerHTML = '';
+        containerContent.append(contentNode);
+    }
 
     setEventListener(){ // создаем слушателя по клику, если во внешнюю область или на крестик, то функция закрытия попапа
         this.popup.addEventListener('click', (evt) => {

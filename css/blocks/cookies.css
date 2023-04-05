@@ -1,0 +1,63 @@
+.form_cookies {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: (2fr, 1fr);
+    grid-gap: 6px;
+}
+
+.accept__text {
+    grid-column: 1/ -1;
+    grid-row: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 400;
+    padding: 20px;
+}
+
+.form__group_accept{
+    grid-column: 1;
+    grid-row: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+    background-color: var(--primary-color);
+    border-radius: 40px;
+    color: var(--bg-overlay-color);
+    box-shadow: 0px 0px 2px 2px var(--outline-color);
+}
+
+.form__group_answer{
+    grid-column: 2;
+    grid-row: 2;
+    border: none;
+    border-radius: 40px;
+    background-color: var(--secondary-color);
+    color: var(--text-light-color);
+    box-shadow: 0px 0px 2px 2px var(--outline-color);
+    font-size: 10px;
+    font-weight: 900;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.accept__btn {
+    appearance: none;
+    border: 0;
+    border-radius: 5px;
+    background: #4676D7;
+    color: #fff;
+    padding: 8px 16px;
+    font-size: 16px;
+}
+
+.accept__checkbox-wrap {
+	display: block;
+	margin: 0 0 10px 0;
+	cursor: pointer;
+	user-select: none;
+	position: relative;
+}
+/*  */

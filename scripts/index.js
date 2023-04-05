@@ -3,19 +3,28 @@
 
 const btnOpenPopupForm = document.querySelector('#add'); // кнопка добавления кота в хэдере
 const formAddCat = document.querySelector('#popup-form-cat'); // форма с инпутами для добавления кота из хтмл (пустая)
+const formAccept = document.querySelector('#popup-form-accept');
 const sectionCard = document.querySelector('.cards'); // пустая секция для котов
 
 const popupAddCat = new Popup("popup-add-cats"); // попап для добавления кота (из файла popup.js)
 popupAddCat.setEventListener(); // слушатель на открытом попапе для его закрытия
 
+const popupAccept = new Popup('popup-accept'); // попап для куки
+popupAccept.setEventListener();
 
-// cats.forEach(catData => {
-//     const cat = new Card(catData, '#card-template') // класс в файле card.js; catData - объекты с котиками из файла card.js; айди card-template - форма карточки в хтмл
-//     const firstCat = cat.getElement() // сохраняем в переменную склонированный из БД элемент (кот)
-//     sectionCard.append(firstCat); // добавляем созданного кота в секцию
-// }); // перебрали массив котов и запушили
+const popupCatInfo = new Popup('popup-cat-info'); // попап для информации о котике
+popupCatInfo.setEventListener();
 
-cats.forEach(catData => createCat(catData)); // перебрали массив котов и запушили новой функцией (вместо куска кода сверху)
+const catsInfoInstance = new CatsInfo('#cats-info-template', handleDeleteCat); // экземпляр класса для вывода 
+const catsInfoElement = catsInfoInstance.getElement();
+
+// cats.forEach(catData => createCat(catData)); // берем котов из cats.js
+
+api.getAllCats().then((data) => { // берем котов с сервера
+    data.forEach(catData => {
+    createCat(catData);
+    })
+})
 
 function serializeForm(elements) { // функция, которая принимает инпуты и введенные в них значения и возвращает объект с ключ-значение
     const formData = {};
@@ -34,7 +43,7 @@ function serializeForm(elements) { // функция, которая прини�
 }
 
 function createCat(dataCat) { // функция добавления кота
-    const cardInstance = new Card(dataCat, '#card-template');
+    const cardInstance = new Card(dataCat, '#card-template', handleCatTitle);
     const newCardElement = cardInstance.getElement();
     sectionCard.append(newCardElement);
 }
@@ -44,11 +53,57 @@ function handleFormAddCat(e) {
 
     const elementsFromCat = [...formAddCat.elements]; // в массив распаковываем все элементы из пустой формы для добавления кота хтмл (инпуты)
     const dataFormCat = serializeForm(elementsFromCat); // к инпутам и введенным в них значениям применяем функцию для создания объекта с ключ-значение
-    createCat(dataFormCat); // создаем кота, в качестве данных передаем полученные из формы ключи-значения
+    
+    api.addNewCat(dataFormCat).then(() => { // берем котов с сервера
+        createCat(dataFormCat);
+    })
+    //createCat(dataFormCat); // создаем кота, в качестве данных передаем полученные из формы ключи-значения
     
     popupAddCat.close(); // закрыть попап
+    e.target.reset();
 }
 
+function handleFormAccept(e) { // добавление куки
+    e.preventDefault()
 
-btnOpenPopupForm.addEventListener('click', () => popupAddCat.open()); // повесили на кнопку слушателя, который открывает попап при клике
+    const acceptData = [...formAccept.elements];
+    const serializeData = serializeForm(acceptData);
+
+    if(serializeData.accept == true){
+        Cookies.set('accept', 'true');
+    }
+    
+    popupAccept.close();
+}
+
+function handleCatTitle(cardInstance) {
+    catsInfoInstance.setData(cardInstance);
+    popupCatInfo.setContent(catsInfoElement);
+    popupCatInfo.open();
+}
+
+function handleDeleteCat(cardInstance) {
+
+    api.deleteCatById(cardInstance.getId()).then(() => {
+        cardInstance.deleteView();
+
+        popupCatInfo.close();
+        console.log('popupCatInfo.close()', popupCatInfo.close);
+    })
+
+   
+}
+
+btnOpenPopupForm.addEventListener('click', () => { // без согласия на обработку куки нельзя добавить котика
+    if (Cookies.get('accept')) {
+        popupAddCat.open();
+    } else {
+        popupAccept.open();
+    }
+});
+
 formAddCat.addEventListener('submit', handleFormAddCat); // submit - отправка формы; при отправке формы попап закрывается, страница не перезагружается
+formAccept.addEventListener('submit', handleFormAccept);
+
+
+

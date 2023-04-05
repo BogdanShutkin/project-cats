@@ -17,73 +17,10 @@
         </div>
     </header>
     <main class="main container">
-        <!-- <form name="testform" action="#" method="post" id="testform" class="wrapper">
-  
-            1. Los padres
-           <input name="Name" type="text" onkeyup="tolowcase(this);" data-id="0" class="answer vp inputbox" value="" placeholder="..."> 
-          Sergio
-             <br>
-            <br>
-            2. Los amigos 
-            <input name="Name" type="text" onkeyup="tolowcase(this);" data-id="1" class="answer vp inputbox" value="" placeholder="..."> 
-             Elena
-            <br>
-                <br>
-            3. Las calles 
-           <input name="Name" type="text" onkeyup="tolowcase(this);" data-id="2" class="answer vp inputbox" value="" placeholder="..."> 
-            Madrid
-            <br>
-            <br>
-             4.El centro 
-           <input name="Name" type="text" onkeyup="tolowcase(this);" data-id="3" class="answer vp inputbox" value="" placeholder="..."> 
-          la ciudad
-     
-             <br>
-            <br>
-           5. El zumo 
-            <input name="Name" type="text" onkeyup="tolowcase(this);" data-id="4" class="answer vp inputbox" value="" placeholder="..."> 
-             naranja
-            <br>
-                <br>
-          6. Un vaso 
-           <input name="Name" type="text" onkeyup="tolowcase(this);" data-id="5" class="answer vp inputbox" value="" placeholder="..."> 
-            agua
-            <br>
-            <br>
-     
-            7. Una copa 
-            <input name="Name" type="text" onkeyup="tolowcase(this);" data-id="6" class="answer vp inputbox" value="" placeholder="..."> 
-          vino
-             <br>
-            <br>
-            8. La mesa 
-            <input name="Name" type="text" onkeyup="tolowcase(this);" data-id="7" class="answer vp inputbox" value="" placeholder="..."> 
-             madera
-            <br>
-                <br>
-           9. El helado  
-           <input name="Name" type="text" onkeyup="tolowcase(this);" data-id="8" class="answer vp inputbox" value="" placeholder="..."> 
-            chocolate
-            <br>
-            <br>
-            10. La casa 
-           <input name="Name" type="text" onkeyup="tolowcase(this);" data-id="9" class="answer vp inputbox" value="" placeholder="..."> 
-            mi amigo
-            <br>
-           
-           
-            
-            
-            <input type="submit" class="btn" value="Проверить ответы">
-     
-       <div class="result">
-         Ваш результат: <span class="result_text">пока ноль</span>
-       </div>
-     </form> -->
         <section class="cards">
             <h2 class="visually-hidden">Список котиков</h2>
              <!-- <div class="card">
-                <img src="/assets/images/cat.jpg" alt="Изабражение" class="card__image">
+                <img src="/assets/images/cat.jpg" alt="Изображение" class="card__image">
                 <a href="#" class="card__link"><h3 class="card__name">Кот</h3></a>
                 <button class="card__like" aria-label="Поставить лайк"><i class="fa-solid fa-heart fa-2x"></i></button>
             </div> -->
@@ -114,28 +51,79 @@
                 <div class="form__group_rate"><input type="number" class="form__input" name="rate" placeholder="Рейтинг" min="0" max="10"></div>
                 <div class="form__group_description"><textarea name="description" class="form__input form__textarea" placeholder="Описание"></textarea></div>
                 <div class="form__group_like"><label class="form__checkbox-wrap">
-                    <input type="checkbox" name="favourite" class="form__checkbox " placeholder="">
+                    <input type="checkbox" name="favourite" class="form__checkbox" placeholder="">
                     <span class="form__label">Любимчик</span>
                     <span class="form__fake-checkbox"><i class="fa-solid fa-heart"></i></span>
                 </label></div>
-                <div class="form__group_link"><input type="url" class="form__input form__input_image" name="img_link" placeholder="Ссылка на фото"></div>
+                <div class="form__group_link"><input type="url" class="form__input form__input_image" name="image" placeholder="Ссылка на фото"></div>
                 <div class="form__group_button"><label class="form__checkbox-wrap"><button type="submit" class="form__btn btn">Добавить котика</button><span class="form__fake-checkbox"><i class="fa-solid fa-paw"></i></span></label></div>
             </form>
         </div>
     </div>
 
+    <div class="popup popup-accept">
+        <div class="popup__container" >
+            <button class="popup__close btn"><i class="fa-solid fa-xmark"></i></button>
+            <form class="form_cookies" id="popup-form-accept">
+                <h2 class="accept__text">Для добавления котика<br>позвольте нам использовать<br>Ваши Cookies :)</h2>
+                <div class="form__group_accept">
+                    <label class="accept__checkbox-wrap">
+                        <input type="checkbox" name="accept" class="accept__checkbox" placeholder="Я согласен на использование моих Cookies">
+                        <span class="form__label">Я согласен на использование моих Cookies</span>
+                    </label>
+                </div>
+                <div class="form__group_answer">
+                    <label class="form__checkbox-wrap">
+                        <button type="submit" class="form__btn btn">Ответить</button>
+                    </label>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="popup popup-cat-info">
+        <div class="popup__container" >
+            <button class="popup__close btn popup__close_external"><i class="fa-solid fa-xmark"></i></button>
+           <div class="popup__content"></div>
+        </div>
+    </div>
+
     <template id="card-template">
         <div class="card">
-            <img src="" alt="Изабражение" class="card__image">
+            <img src="" alt="Изображение" class="card__image">
             <a href="#" class="card__link"><h3 class="card__name"></h3></a>
             <button class="card__like" aria-label="Поставить лайк"><i class="fa-solid fa-heart fa-2x"></i></button>
         </div>
     </template>
+
+    <template id="cats-info-template">
+        <div class="cat-info">
+            <button class="cat-info__edited"><i class="fa-regular fa-pen-to-square"></i>Редактировать</button>
+            <button class="cat-info__saved cat-info__saved_hidden"><i class="fa-regular fa-pen-to-square"></i>Сохранить</button>
+            <button class="cat-info__deleted"><i class="fa-solid fa-trash"></i>Удалить</button>
+
+            <img src="#" class="cat-info__image" loading="lazy">
+            <span class="cat-info__id"></span>
+            <div class="cat-info__title">
+                <p class="cat-info__name"></p>
+                <button class="cat-info__favourite"><i class="fa-solid fa-heart fa-2x"></i></button>
+            </div>
+            <span class="cat-info__rate"></span>
+            <div class="cat-info__age">
+                <span class="cat-info__age-val"></span>
+                <span class="cat-info__age-text"></span>
+            </div>
+            <p class="cat-info__desc"></p>
+        </div>
+    </template>
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/js-cookie@3.0.1/dist/js.cookie.min.js" defer></script> <!-- Для упрощенной работы с куками -->
     <script src="./scripts/cats.js" defer></script>
     <script src="./scripts/card.js" defer></script>
     <script src="./scripts/popup.js" defer></script>
+    <script src="./scripts/api.js" defer></script>
+    <script src="./scripts/cats-info.js" defer></script>
     <script src="./scripts/index.js" defer></script>
 </body>
 </html>
