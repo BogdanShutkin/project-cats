@@ -8,6 +8,7 @@ class Card {
     _getTemplate() { // возвращает содержимое шаблона в виде DOM узла
         return document.querySelector(this._selectorTemplate).content.querySelector('.card')
     }
+    
 
     getElement() {
         this.element = this._getTemplate().cloneNode(true); // клонируем полученное содержимое из шаблона
@@ -17,8 +18,9 @@ class Card {
 
         this.cardTitle.textContent = this._dataCat.name; // созданным переменным присваиваем значение, взятое из конкретного объекта с котиком (cats.js)
         this.cardImage.src = this._dataCat.image; // в cats.js - img_link
+        //this.cardLike = this._dataCat.favorite;
 
-        if (this._dataCat.favourite) { // проверяем наличие лайка в объекте => добавляем класс active, которому прописан стиль css с красным сердечком
+        if (this._dataCat.favorite) { // проверяем наличие лайка в объекте => добавляем класс active, которому прописан стиль css с красным сердечком
             this.cardLike.classList.toggle('card__like_active')
         }
 
@@ -39,6 +41,10 @@ class Card {
         return this._dataCat.id;
     }
 
+    getName(){
+        return this._dataCat.name;
+    }
+
     deleteView() {
         this.element.remove();
         this.element = null;
@@ -50,4 +56,3 @@ class Card {
     }
 
 }
-

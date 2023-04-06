@@ -51,7 +51,7 @@
                 <div class="form__group_rate"><input type="number" class="form__input" name="rate" placeholder="Рейтинг" min="0" max="10"></div>
                 <div class="form__group_description"><textarea name="description" class="form__input form__textarea" placeholder="Описание"></textarea></div>
                 <div class="form__group_like"><label class="form__checkbox-wrap">
-                    <input type="checkbox" name="favourite" class="form__checkbox" placeholder="">
+                    <input type="checkbox" name="favorite" class="form__checkbox" placeholder="">
                     <span class="form__label">Любимчик</span>
                     <span class="form__fake-checkbox"><i class="fa-solid fa-heart"></i></span>
                 </label></div>
@@ -99,14 +99,14 @@
     <template id="cats-info-template">
         <div class="cat-info">
             <button class="cat-info__edited"><i class="fa-regular fa-pen-to-square"></i>Редактировать</button>
-            <button class="cat-info__saved cat-info__saved_hidden"><i class="fa-regular fa-pen-to-square"></i>Сохранить</button>
+            <button type="submit" class="cat-info__saved cat-info__saved_hidden"><i class="fa-regular fa-pen-to-square"></i>Сохранить</button>
             <button class="cat-info__deleted"><i class="fa-solid fa-trash"></i>Удалить</button>
 
             <img src="#" class="cat-info__image" loading="lazy">
             <span class="cat-info__id"></span>
             <div class="cat-info__title">
                 <p class="cat-info__name"></p>
-                <button class="cat-info__favourite"><i class="fa-solid fa-heart fa-2x"></i></button>
+                <button class="cat-info__favorite"><i class="fa-solid fa-heart fa-2x"></i></button>
             </div>
             <span class="cat-info__rate"></span>
             <div class="cat-info__age">

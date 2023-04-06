@@ -49,14 +49,14 @@
     font-weight: bold;
 }
 
-.cat-info__favourite {
+.cat-info__favorite {
     border: none;
     border-color: transparent;
     color: var(--text-secondary-color);
     cursor: pointer;
 }
 
-.cat-info__favourite_active {
+.cat-info__favorite_active {
     color: var(--tertiary-color)
 }
 
@@ -107,6 +107,14 @@
     background-color: var(--bg-main-color);
 } */
 .cat-info__edited{
+    grid-column: 3;
+    grid-row: 4;
+    border-radius: 10px;
+    padding: 6px 10px;
+    display: flex;
+}
+
+.cat-info__saved{
     grid-column: 3;
     grid-row: 4;
     border-radius: 10px;

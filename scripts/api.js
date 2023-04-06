@@ -48,6 +48,12 @@ class API {
             method: 'DELETE',
          }).then(this._onResponce)
     }
+
+    editCatById(idCat){
+        return fetch(`${this._url}/update/${idCat}`, {
+            method: 'PUT',
+         }).then(this._onResponce)
+    }
 }
 
 const api = new API (CONFIG_API); // экземпляр класса со ссылкой на наш сервер
